@@ -4,7 +4,7 @@
     app.service('UsuariosServices', function ($resource) {
 
 
-        var resource = $resource('/eye-tracking-api/usuarios', {}, {
+        var resource = $resource('/aut-api/usuarios', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -20,7 +20,7 @@
 
         });
 
-        var resource2 = $resource('/eye-tracking-api/usuarios/:id', {}, {
+        var resource2 = $resource('/aut-api/usuarios/:id', {}, {
 
             delete:{
                 method: 'DELETE'

@@ -2,7 +2,7 @@
 
     app.service('TurnosServices', function ($resource) {
 
-        var resource = $resource('/eye-tracking-api/turnos', {}, {
+        var resource = $resource('/aut-api/turnos', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -14,7 +14,7 @@
             }
         });
 
-        var resource2 = $resource('/eye-tracking-api/turnos/:id', {}, {
+        var resource2 = $resource('/aut-api/turnos/:id', {}, {
             delete:{
                 method: 'DELETE'
             }

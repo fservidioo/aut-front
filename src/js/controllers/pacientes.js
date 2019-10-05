@@ -2,7 +2,7 @@
 
     app.service('PacientesServices', function ($resource) {
 
-        var resource = $resource('/eye-tracking-api/pacientes', {}, {
+        var resource = $resource('/aut-api/pacientes', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -17,7 +17,7 @@
             },
         });
 
-        var resource2 = $resource('/eye-tracking-api/pacientes/:id', {}, {
+        var resource2 = $resource('/aut-api/pacientes/:id', {}, {
 
             get:{
                 method: 'GET'

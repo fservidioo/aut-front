@@ -64,7 +64,7 @@ module.exports = function (grunt) {
         // proxy to connect to backend http server
         proxies: [
             {
-                context: ['/eye-tracking-api'],
+                context: ['/aut-api'],
                 host: 'localhost',
                 port: '8080',
                 headers: {

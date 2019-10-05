@@ -3,8 +3,8 @@
 
     app.service('DispositivosServices', function ($resource) {
 
-        
-        var resource = $resource('/eye-tracking-api/dispositivos', {}, {
+
+        var resource = $resource('/aut-api/dispositivos', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -20,7 +20,7 @@
 
         });
 
-        var resource2 = $resource('/eye-tracking-api/dispositivos/:id', {}, {
+        var resource2 = $resource('/aut-api/dispositivos/:id', {}, {
 
             delete:{
                 method: 'DELETE'

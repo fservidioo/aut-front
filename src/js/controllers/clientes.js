@@ -2,7 +2,7 @@
 (function(app) {
     app.service('ClientesServices', function ($resource) {
 
-        var resource = $resource('/eye-tracking-api/clientes', {}, {
+        var resource = $resource('/aut-api/clientes', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -17,7 +17,7 @@
             },
         });
 
-        var resource2 = $resource('/eye-tracking-api/clientes/:id', {}, {
+        var resource2 = $resource('/aut-api/clientes/:id', {}, {
             get:{
                 method: 'GET'
             }

@@ -3,7 +3,7 @@
 
     app.service('AuditoriaServices', function ($resource) {
 
-        var resource = $resource('/eye-tracking-api/auditoria', {}, {
+        var resource = $resource('/aut-api/auditoria', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -19,7 +19,7 @@
 
         });
 
-        var resource2 = $resource('/eye-tracking-api/auditoria/:id', {}, {
+        var resource2 = $resource('/aut-api/auditoria/:id', {}, {
 
             delete:{
                 method: 'DELETE'

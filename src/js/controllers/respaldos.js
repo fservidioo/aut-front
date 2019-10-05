@@ -3,7 +3,7 @@
 
     app.service('RespaldosServices', function ($resource) {
 
-        var resource = $resource('/eye-tracking-api/respaldos', {}, {
+        var resource = $resource('/aut-api/respaldos', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -19,7 +19,7 @@
 
         });
 
-        var resource2 = $resource('/eye-tracking-api/respaldos/:id', {}, {
+        var resource2 = $resource('/aut-api/respaldos/:id', {}, {
 
             delete:{
                 method: 'DELETE'

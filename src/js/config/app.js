@@ -463,7 +463,7 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
     });
     app.service('KeyValueServices', function ($resource) {
 
-        var resource = $resource('/eye-tracking-api/keyvalue', {}, {
+        var resource = $resource('/aut-api/keyvalue', {}, {
             query: {
                 method: 'GET',
                 headers: [
