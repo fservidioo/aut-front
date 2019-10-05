@@ -1,0 +1,49 @@
+<md-dialog ng-style="{'min-height': '325px', 'width': '700px'}">
+
+    <md-toolbar style="background-color: #0f2bb0">
+        <div class="md-toolbar-tools">
+            <h2>Agregar Dispositivo</h2>
+            <span flex></span>
+            <md-button ng-click="closeDialog()" class="md-icon-button">
+                <md-icon aria-label="Close" class="material-icons">close</md-icon>
+                <md-tooltip md-direction="bottom">Cerrar</md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div style="padding-top: 15px" layout="column" layout-padding>
+
+            <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                <label>Hostname</label>
+                <input required ng-model="dispositivo.hostname">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                <label>IP</label>
+                <input required ng-model="dispositivo.ip">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Template</label>
+                <input ng-model="dispositivo.template" md-select-on-focus>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Descripcion</label>
+                <textarea ng-model="dispositivo.descripcion" md-maxlength="1000" md-select-on-focus></textarea>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button Xclass="md-primary" ng-disabled="canSave()" ng-click="saveDispositivo()"
+                   style="margin-right:10px;">
+            Guardar
+        </md-button>
+    </md-dialog-actions>
+
+
+</md-dialog>

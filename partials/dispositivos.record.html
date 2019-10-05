@@ -1,0 +1,59 @@
+<main-toolbar>
+
+    <md-button ng-click="goBack()" class="md-icon-button">
+        <md-icon aria-label="arrow back" class="material-icons">arrow_back</md-icon>
+        <md-tooltip md-direction="bottom">Go back</md-tooltip>
+    </md-button>
+    <h1 flex style="text-align: center" >Dispositivo - > {{ (dispositivo.id) ? dispositivo.hostname : "Nuevo" }}</h1>
+
+    <md-button ng-disabled="!allowedToSave" ng-click="updateDispositivo()" class="md-raised md-primary">Guardar Cambios</md-button>
+</main-toolbar>
+
+<md-progress-linear ng-if="loading" md-mode="indeterminate"></md-progress-linear>
+
+<md-card flex>
+
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Datos del Dispositivo</span>
+        </md-card-title-text>
+    </md-card-title>
+
+    <md-card-content>
+        <ng-form novalidate flex>
+
+            <section class="md-padding">
+
+                <div layout="row" layout-gt-sm="row" flex-gt-sm>
+
+                    <md-input-container flex>
+                        <label>Hostname</label>
+                        <input required="true" ng-model="dispositivo.hostname" maxlength="100" md-maxlength="100">
+                    </md-input-container>
+
+                    <md-input-container flex>
+                        <label>IP</label>
+                        <input required="true" maxlength="15" md-maxlength="15" ng-model="dispositivo.ip">
+                    </md-input-container>
+
+                    <md-input-container flex>
+                        <label>Template</label>
+                        <input maxlength="100" md-maxlength="100" ng-model="dispositivo.template">
+                    </md-input-container>
+
+                </div>
+
+                <div layout="row" layout-gt-sm="row" flex-gt-sm>
+
+                    <md-input-container class="md-block" flex>
+                        <label>Descripcion</label>
+                        <textarea ng-model="dispositivo.descripcion" md-maxlength="1000" md-select-on-focus></textarea>
+                    </md-input-container>
+                </div>
+
+
+            </section>
+        </ng-form>
+    </md-card-content>
+
+</md-card>

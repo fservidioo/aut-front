@@ -1,0 +1,59 @@
+<md-dialog ng-style="{'min-height': '325px', 'width': '700px'}">
+
+    <md-toolbar style="background-color: #0f2bb0">
+        <div class="md-toolbar-tools">
+            <h2>Agregar Redesprivada</h2>
+            <span flex></span>
+            <md-button ng-click="closeDialog()" class="md-icon-button">
+                <md-icon aria-label="Close" class="material-icons">close</md-icon>
+                <md-tooltip md-direction="bottom">Cerrar</md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+
+        <div style="padding-top: 15px" layout="column" layout-padding>
+
+            <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                <label>Nombre de VLan</label>
+                <input required ng-model="redprivada.nombreVlan">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-icon-right md-block" flex>
+                <label>TAG</label>
+                <input required ng-model="redprivada.tagVlan" md-maxlength="4" maxlength="4">
+
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Ip Address</label>
+                <input ng-model="redprivada.ipAddress" md-select-on-focus>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Submask</label>
+                <input ng-model="redprivada.submask" md-select-on-focus>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>IP Helper</label>
+                <input ng-model="redprivada.ipHelper" md-select-on-focus>
+            </md-input-container>
+
+
+
+
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button Xclass="md-primary" ng-disabled="canSave()" ng-click="saveRedesprivada()"
+                   style="margin-right:10px;">
+            Guardar
+        </md-button>
+    </md-dialog-actions>
+
+
+</md-dialog>
