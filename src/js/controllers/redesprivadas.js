@@ -27,7 +27,7 @@
             },
         });
 
-        var resource3 = $resource('/aut-api/redesprivadas/:id/connect', {}, {
+        var resource3 = $resource('/aut-api/redesprivadas/connect', {}, {
 
             connect:{
                 method: 'POST'

@@ -13,28 +13,22 @@
             );
         };
 
-        $scope.verify = function(allowedLogins){
+        $scope.verify = function(){
 
-/*            var userFound = _.findWhere(allowedLogins, { email: $scope.email});
+            var userFound = _.findWhere(usuarios, { nombre: $scope.nombre, password: $scope.password});
             if(userFound){
                 $rootScope.logged = true;
                 $rootScope.userLogged = userFound;
                 $scope.showSimpleToast('Log in existoso');
-                if(userFound.esAdministrativo){
-                    $state.go('turnos.list');
-                }else if(userFound.esOftalmologo){
-                    $state.go('pacientes.list');
-                }else if(userFound.esAdministrador){
-                    $state.go('usuarios.list');
-                }
+                $state.go('dispositivos.list');
             }else{
                 $scope.showSimpleToast('Acceso Denegado');
-            }*/
+            }
 
-            $rootScope.logged = true;
-            $rootScope.userLogged = true;
-            $scope.showSimpleToast('Log in existoso');
-            $state.go('dispositivos.list');
+            //$rootScope.logged = true;
+            //$rootScope.userLogged = true;
+            //$scope.showSimpleToast('Log in existoso');
+            //$state.go('dispositivos.list');
         }
 
     });
