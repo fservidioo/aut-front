@@ -27,6 +27,13 @@
             },
         });
 
+        var resource3 = $resource('/aut-api/redesprivadas/:id/connect', {}, {
+
+            connect:{
+                method: 'POST'
+            },
+        });
+
         this.getRedesprivadas = function getRedesprivadas(){
             return resource.query({}).$promise;
         };
@@ -42,6 +49,10 @@
         this.getRedesprivadaById = function getRedesprivadaById(id){
             return resource2.get({id: id}).$promise;
         }
+
+        this.connectToDevices = function connectToDevices(dispositivosIds){
+            return resource3.connect(dispositivosIds).$promise
+        };
 
     });
 
@@ -172,6 +183,10 @@
                     .hideDelay(3000)
             );
         };
+
+        $scope.connectToDevices = function(){
+            RedesprivadasServices.connectToDevices([161]);
+        }
 
         $scope.goBack = function(){
             $state.go('redesprivadas.list');
