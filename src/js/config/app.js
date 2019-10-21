@@ -308,13 +308,9 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
                 },
             },
             resolve : {
-
-                respaldos: ['$http', function($http) {
-                    return $http({
-                        method: 'GET',
-                        url: '/js/json/respaldos.json'
-                    })
-                }]
+                dispositivos: function (DispositivosServices){
+                    return DispositivosServices.getDispositivos();
+                }
             },
             require: 'js/iic-underscore.js'
         })
@@ -334,7 +330,7 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
                 },
             },
             resolve : {
-                redesprivadas: function (RedesprivadasServices){
+                redesprivadas: function (RedesprivadasServices) {
                     return RedesprivadasServices.getRedesprivadas();
                 }
             },
@@ -353,6 +349,9 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
                 redprivada: function ($stateParams, RedesprivadasServices){
                     return RedesprivadasServices.getRedesprivadaById($stateParams.subId);
                 },
+                dispositivos: function (DispositivosServices){
+                    return DispositivosServices.getDispositivos();
+                }
             },
         })
 
@@ -478,6 +477,14 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
         };
 
     });
+
+
+    /*respaldos: ['$http', function($http) {
+                    return $http({
+                        method: 'GET',
+                        url: '/js/json/respaldos.json'
+                    })
+                }]*/
 
 
 })(networkautomation);

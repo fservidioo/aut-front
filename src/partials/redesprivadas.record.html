@@ -4,9 +4,8 @@
         <md-icon aria-label="arrow back" class="material-icons">arrow_back</md-icon>
         <md-tooltip md-direction="bottom">Go back</md-tooltip>
     </md-button>
-    <h1 flex style="text-align: center" >redesprivada - > {{ (redesprivadas.tagVlan) ? redesprivadas.nombreVlan : "Nuevo" }}</h1>
-    connectToDevices
-    <md-button ng-click="connectToDevices()" class="md-raised md-primary">Conectar a dispositivos</md-button>
+    <h1 flex style="text-align: center" >redesprivadas-> {{ (redesprivadas.tagVlan) ? redesprivadas.nombreVlan : "Modificar" }}</h1>
+    <!--<md-button ng-click="connectToDevices()" class="md-raised md-primary">Conectar a dispositivos</md-button>--->
     <md-button ng-disabled="!allowedToSave" ng-click="updateRedesprivada()" class="md-raised md-primary">Guardar Cambios</md-button>
 </main-toolbar>
 
@@ -22,6 +21,11 @@
 
     <md-card-content>
         <ng-form novalidate flex>
+            <md-button class="md-fab md-fab-bottom-right md-primary" style="background-color: deepskyblue"
+                       ng-click="connectToDevices()" aria-label="Crear Estudio">
+                <md-icon class="material-icons">settings_ethernet</md-icon>
+                <md-tooltip md-direction="left">Conectar Red a Dispositivos</md-tooltip>
+            </md-button>
 
             <section class="md-padding">
 

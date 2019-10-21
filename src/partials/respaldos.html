@@ -37,24 +37,26 @@
                     <tr md-row>
                         <th md-column md-order-by="nombre">Nombre</th>
                         <th md-column md-order-by="ip">IP</th>
-                        <th md-column md-order-by="template">Fecha</th>
+                        <th md-column md-order-by="template">Backup</th>
                     </tr>
                     </thead>
                     <tbody md-body>
                     <tr md-row
-                        ng-repeat="a in respaldos | filter: search | orderBy: query.order"
-                        class="animate-list-item clickable" Xng-click="update($event, estudio, true)">
+                        ng-repeat="dispositivo in dispositivos | filter: search | orderBy: query.order">
 
                         <td md-cell md-highlight-text="query" md-highlight-flags="i">
-                            {{ :: a.nombre}}
+                            {{ :: dispositivo.hostname}}
                         </td>
                         <td md-cell md-highlight-text="query" md-highlight-flags="i">
-                            {{ :: a.ip}}
+                            {{ :: dispositivo.ip}}
                         </td>
-                        <td md-cell md-highlight-text="query" md-highlight-flags="i">
-                            {{ :: a.fecha}}
-                        </td>
+                        <td id="c12">
+                            <md-button href="file:///Users/fservidio/Desktop/{{ :: dispositivo.ip}}.txt" ng-click="" class="md-icon-button">
+                                <md-icon aria-label="arrow back" class="material-icons">insert_drive_file</md-icon>
+                                <md-tooltip md-direction="bottom">Backup</md-tooltip>
+                            </md-button>
 
+                        </td>
                     </tr>
                     </tbody>
                 </table>

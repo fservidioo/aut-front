@@ -1,9 +1,9 @@
 (function(app) {
 
 
-    app.service('RespaldosServices', function ($resource) {
+    /*app.service('RespaldosServices', function ($resource) {
 
-        var resource = $resource('/aut-api/respaldos', {}, {
+        var resource = $resource('/aut-api/dispositivos', {}, {
             query: {
                 method: 'GET',
                 headers: [
@@ -19,29 +19,16 @@
 
         });
 
-        var resource2 = $resource('/aut-api/respaldos/:id', {}, {
 
-            delete:{
-                method: 'DELETE'
-            },
-        });
 
-        this.getRespaldos = function getRespaldos(){
+        this.getDispositivos = function getDispositivos(){
             return resource.query({}).$promise;
         };
-        this.createEstudioVigente = function createEstudiosVigente(estudiovigente){
-            return resource.create(estudiovigente);
-        };
-        this.deleteEstudioVigenteById = function deleteEstudioVigenteById(id){
-            return resource2.delete({id: id});
-        };
-        this.updateEstudioVigente = function updateEstudioVigente(estudiovigente){
-            return resource.update(estudiovigente);
-        }
 
-    });
 
-    app.controller('RespaldosController', function($scope, $resource, $state, $mdDialog, $rootScope, $mdToast, respaldos, RespaldosServices) {
+    });*/
+
+    app.controller('RespaldosController', function($scope, $resource, $state, $mdDialog, $rootScope, $mdToast, dispositivos) {
 
         'use strict';
 
@@ -53,20 +40,20 @@
                     .hideDelay(3000)
             );
         };
-
+        $scope.dispositivos = dispositivos;
         //$scope.respaldos = respaldos;
-        $scope.respaldos = respaldos.data;
+        //$scope.respaldos = respaldos.data;
 
         $scope.query = [];
 
-        $scope.search = function (row) {
+        /*$scope.search = function (row) {
             var isIt = (angular.lowercase(row.nombre).indexOf(angular.lowercase($scope.query) || '') !== -1 );
 
             return isIt;
-        };
+        };*/
 
         $scope.goBack = function(){
-            $state.go('home');
+            //$state.go('home');
         }
 
 
@@ -76,50 +63,7 @@
             }
         });
 
-        $scope.createNew = function (ev) {
 
-            var estudiovigente = {
-
-                fechaCreacion: Date.now()
-            }
-
-            $scope.showDetails(ev, estudiovigente);
-        };
-
-        $scope.update = function (ev, estudiovigente) {
-
-
-            $scope.showDetails(ev, estudiovigente, true);
-        };
-
-        $scope.showDetails = function (ev, estudiovigente, alreadyExists) {
-            $mdDialog.show({
-                templateUrl: 'partials/respaldos.dialog.html',
-                targetEvent: ev,
-                clickOutsideToClose: false,
-                controller: 'RespaldosDialog',
-                escapeToClose: true,
-                locals: {estudiovigente: estudiovigente, alreadyExists: alreadyExists},
-                focusOnOpen: true
-            }).then(function (estudiovigente) {
-
-                if(estudiovigente.$$alreadyExists){
-                    $scope.showSimpleToast("Cambios Guardados");
-                    estudiovigente.fechaUltimaModificacion = Date.now();
-
-                    RespaldosServices.updateEstudioVigente(estudiovigente);
-
-                }else{
-                    $scope.respaldos.push(estudiovigente);
-
-                    RespaldosServices.createEstudioVigente(estudiovigente);
-
-                    $scope.showSimpleToast("Estudio Creado");
-                }
-
-            });
-
-        };
 
     })
 

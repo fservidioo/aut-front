@@ -1,0 +1,64 @@
+<md-dialog ng-style="{'min-height': '325px', 'width': '700px'}">
+
+    <md-toolbar style="background-color: #0f2bb0">
+        <div class="md-toolbar-tools">
+            <h2>Asociar Dispositivo a Red</h2>
+            <span flex></span>
+            <md-button ng-click="closeDialog()" class="md-icon-button">
+                <md-icon aria-label="Close" class="material-icons">close</md-icon>
+                <md-tooltip md-direction="bottom">Cerrar</md-tooltip>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+
+
+            <table md-table class="iic-data-table">
+                <thead md-head md-order="query.order">
+                <tr md-row>
+                    <th md-column md-order-by="hostname">Hostname</th>
+                    <th md-column md-order-by="ip">IP</th>
+                    <th md-column md-order-by="ip">Checkbox</th>
+
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row
+                    ng-repeat="dis in dispositivos | filter: search | orderBy: query.order">
+
+                    <td md-cell md-highlight-text="query" md-highlight-flags="i">
+                        {{ :: dis.hostname}}
+                    </td>
+                    <td md-cell md-highlight-text="query" md-highlight-flags="i">
+                        {{ :: dis.ip}}
+                    </td>
+                    <td >
+                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb5" class="md-primary">
+                        </md-checkbox>
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </md-dialog-content>
+
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button Xclass="md-primary" ng-disabled="canSave()" ng-click="saveDispositivo()"
+                   style="margin-right:10px;">
+            Guardar
+        </md-button>
+    </md-dialog-actions>
+
+
+
+
+
+</md-dialog>

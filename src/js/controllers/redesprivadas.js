@@ -151,11 +151,13 @@
 
         })
 
-    app.controller('RedesprivadasRecordController', function($scope, $resource, $state, redprivada, $stateParams, _, $mdToast, RedesprivadasServices) {
+    app.controller('RedesprivadasRecordController', function($scope, $resource, $state, redprivada, $stateParams, _, $mdToast, RedesprivadasServices, dispositivos,$mdDialog) {
 
         'use strict';
 
         $scope.redprivada = redprivada;
+        $scope.dispositivos = dispositivos;
+        $scope.query = [];
 
         $scope.redesprivadaOriginal = angular.copy($scope.redprivada);
 
@@ -184,8 +186,19 @@
             );
         };
 
-        $scope.connectToDevices = function(){
-            RedesprivadasServices.connectToDevices([161]);
+        $scope.connectToDevices = function(ev, dispositivos,redprivada){
+            $mdDialog.show({
+                templateUrl: 'partials/redesprivadas.dialog.dis.html',
+                targetEvent: ev,
+                clickOutsideToClose: false,
+                controller: 'RedesprivadasRecordController',
+                escapeToClose: true,
+                locals: {dispositivos: $scope.dispositivos, redprivada:redprivada},
+                focusOnOpen: true
+            }).then(function (dispositivos) {
+
+
+            });
         }
 
         $scope.goBack = function(){
