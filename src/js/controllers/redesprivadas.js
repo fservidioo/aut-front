@@ -27,9 +27,13 @@
             },
         });
 
-        var resource3 = $resource('/aut-api/redesprivadas/connect', {}, {
+        var resource3 = $resource('/aut-api/redesprivadas/:id/connect/:deviceid', {}, {
 
             connect:{
+                url: 'aut-api/redesprivadas/:id/connect',
+                headers: [
+                    {'Content-Type':'application/json'}],
+                params: { "id": "@id"},
                 method: 'POST'
             },
         });
@@ -50,8 +54,8 @@
             return resource2.get({id: id}).$promise;
         }
 
-        this.connectToDevices = function connectToDevices(dispositivosIds){
-            return resource3.connect(dispositivosIds).$promise
+        this.connectToDevices = function connectToDevices(id, deviceid){
+            return resource3.connect({id: id}, deviceid).$promise
         };
 
     });
@@ -130,26 +134,50 @@
 
     })
 
-        .controller('RedesprivadasDialog', function ($scope, $mdDialog, redprivada) {
+    .controller('RedesprivadasDialog', function ($scope, $mdDialog, redprivada) {
 
-            $scope.redprivada = redprivada;
+        $scope.redprivada = redprivada;
 
-            $scope.saveRedesprivada = function saveRedesprivada() {
-                $mdDialog.hide($scope.redprivada);
-            };
+        $scope.saveRedesprivada = function saveRedesprivada() {
+            $mdDialog.hide($scope.redprivada);
+        };
 
-            $scope.closeDialog = function () {
-                $mdDialog.cancel();
-            };
+        $scope.closeDialog = function () {
+            $mdDialog.cancel();
+        };
 
-            $scope.canSave = function(){
-                if($scope.redprivada.tagVlan && $scope.redprivada.nombreVlan){
-                    return false;
-                }
-                return true;
-            };
+        $scope.canSave = function(){
+            if($scope.redprivada.tagVlan && $scope.redprivada.nombreVlan){
+                return false;
+            }
+            return true;
+        };
 
-        })
+    })
+
+    .controller('ConnectDevicesDialog', function ($scope, $mdDialog, dispositivos, redprivada) {
+
+        $scope.redprivada = redprivada;
+        $scope.dispositivos = dispositivos;
+
+        $scope.selectedDevices = [];
+
+        $scope.devicesToSubmit = function devicesToSubmit() {
+            $mdDialog.hide($scope.selectedDevices);
+        };
+
+        $scope.closeDialog = function () {
+            $mdDialog.cancel();
+        };
+
+        $scope.canSubmit = function(){
+            if(selectedDevices.length > 0){
+                return false;
+            }
+            return true;
+        };
+
+    });
 
     app.controller('RedesprivadasRecordController', function($scope, $resource, $state, redprivada, $stateParams, _, $mdToast, RedesprivadasServices, dispositivos,$mdDialog) {
 
@@ -186,17 +214,22 @@
             );
         };
 
-        $scope.connectToDevices = function(ev, dispositivos,redprivada){
+        $scope.connectToDevices = function(ev, dispositivos, redprivada){
             $mdDialog.show({
                 templateUrl: 'partials/redesprivadas.dialog.dis.html',
                 targetEvent: ev,
                 clickOutsideToClose: false,
-                controller: 'RedesprivadasRecordController',
+                controller: 'ConnectDevicesDialog',
                 escapeToClose: true,
-                locals: {dispositivos: $scope.dispositivos, redprivada:redprivada},
+                locals: {dispositivos: $scope.dispositivos, redprivada: $scope.redprivada},
                 focusOnOpen: true
-            }).then(function (dispositivos) {
-
+            }).then(function (selectedDevices) {
+            //llamada a connect
+                selectedDevices.forEach(function(device){
+                    RedesprivadasServices.connectToDevices($stateParams.subId, device.id).then(function (success) {
+                        $scope.showSimpleToast("Dispositivo " + device.hostname + " conectado");
+                    })
+                });
 
             });
         }

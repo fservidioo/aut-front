@@ -15,17 +15,15 @@
         <div class="md-dialog-content">
 
 
-            <table md-table class="iic-data-table">
-                <thead md-head md-order="query.order">
-                <tr md-row>
-                    <th md-column md-order-by="hostname">Hostname</th>
-                    <th md-column md-order-by="ip">IP</th>
-                    <th md-column md-order-by="ip">Checkbox</th>
-
-                </tr>
+            <table md-table md-row-select multiple ng-model="selectedDevices" class="iic-data-table">
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column>Hostname</th>
+                        <th md-column>IP</th>
+                    </tr>
                 </thead>
                 <tbody md-body>
-                <tr md-row
+                <tr md-row md-select="dis" md-auto-select
                     ng-repeat="dis in dispositivos | filter: search | orderBy: query.order">
 
                     <td md-cell md-highlight-text="query" md-highlight-flags="i">
@@ -33,11 +31,6 @@
                     </td>
                     <td md-cell md-highlight-text="query" md-highlight-flags="i">
                         {{ :: dis.ip}}
-                    </td>
-                    <td >
-                        <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb5" class="md-primary">
-                        </md-checkbox>
-
                     </td>
 
                 </tr>
@@ -51,7 +44,7 @@
 
     <md-dialog-actions layout="row">
         <span flex></span>
-        <md-button Xclass="md-primary" ng-disabled="canSave()" ng-click="saveDispositivo()"
+        <md-button Xclass="md-primary" ng-disabled="canSubmit()" ng-click="devicesToSubmit()"
                    style="margin-right:10px;">
             Guardar
         </md-button>
