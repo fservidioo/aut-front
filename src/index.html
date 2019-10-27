@@ -44,6 +44,13 @@
                     <span flex style="padding-top: 7px;">Auditoria</span>
                 </md-list-item>
 
+                <md-list-item ng-class="{ 'main-sidenav-item-selected': isInState('monitoreo.list')}" ng-click="goTo('monitoreo.list')"
+                              class="secondary-button-padding">
+                    <md-icon aria-label="administrador" class="material-icons">timeline</md-icon>
+                    <span flex style="padding-top: 7px;">Monitoreo</span>
+                </md-list-item>
+
+
                 <md-list-item ng-class="{ 'main-sidenav-item-selected': isInState('respaldos.list')}" ng-click="goTo('respaldos.list')"
                               class="secondary-button-padding">
                     <md-icon aria-label="administrador" class="material-icons">insert_drive_file</md-icon>
@@ -61,6 +68,8 @@
                     <md-icon aria-label="administrador" class="material-icons">person</md-icon>
                     <span flex style="padding-top: 7px;">Usuarios</span>
                 </md-list-item>
+
+
 
 
             </md-list>
@@ -90,14 +99,12 @@
 
 
     <script src="js/config/app.js"></script>
-    <script src="js/controllers/clientes.js"></script>
-    <script src="js/controllers/keyvalue.js"></script>
     <script src="js/controllers/pacientes.js"></script>
+    <script src="js/controllers/monitoreo.js"></script>
     <script src="js/controllers/auditoria.js"></script>
     <script src="js/controllers/respaldos.js"></script>
     <script src="js/controllers/redesprivadas.js"></script>
     <script src="js/controllers/home-controller.js"></script>
-    <script src="js/controllers/turnos.js"></script>
     <script src="js/controllers/dispositivos.js"></script>
     <script src="js/controllers/usuarios.js"></script>
     <script src="js/controllers/login-controller.js"></script>

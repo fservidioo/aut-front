@@ -1,6 +1,7 @@
 (function(app) {
 
-    app.controller('RespaldosController', function($scope, $resource, $state, $mdDialog, $rootScope, $mdToast, dispositivos) {
+    app.controller('MonitoreoController' +
+        '', function($scope, $resource, $state, $mdDialog, $rootScope, $mdToast, dispositivos) {
 
         'use strict';
 

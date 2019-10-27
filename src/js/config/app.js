@@ -53,182 +53,6 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
             }
         })
 
-        .state('turnos', {
-            abstract: true,
-            url: '/turnos',
-            template: '<div ui-view class="page-transition"></div>'
-        })
-
-        .state('turnos.list', {
-            url: '/list',
-            views: {
-                "": {
-                    templateUrl: 'partials/turnos.html',
-                    controller: 'TurnosListController',
-                },
-            },
-            require: 'js/iic-underscore.js',
-            resolve: {
-                clientes: function (ClientesServices){
-                    return ClientesServices.getClientes()
-                },
-                turnos: function (TurnosServices){
-                    return TurnosServices.getTurnos(Date.now());
-                },
-                keyvalues : function (KeyValueServices) {
-                    return KeyValueServices.getKeyValues()
-                }
-            }
-        })
-
-        .state('turnos.export', {
-            url: '/export/:date',
-            views: {
-                "": {
-                    templateUrl: 'partials/turnos.export.html',
-                    controller: 'TurnosListExportController',
-                },
-            },
-            params: { },
-            require: 'js/iic-underscore.js',
-            resolve: {
-                clientes: function (ClientesServices){
-                    return ClientesServices.getClientes()
-                },
-                turnos: function ($stateParams, TurnosServices){
-                    return TurnosServices.getTurnos($stateParams.date);
-                },
-                keyvalues : function (KeyValueServices) {
-                    return KeyValueServices.getKeyValues()
-                }
-            }
-        })
-
-        .state('turnos.record', {
-            url: '/:subId',
-            views: {
-                "": {
-                    templateUrl: 'partials/turnos.record.html',
-                    controller: 'TurnosRecordController',
-                },
-            },
-
-            resolve: {
-            }
-        })
-
-
-        .state('clientes', {
-            abstract: true,
-            url: '/clientes',
-            template: '<div ui-view class="page-transition"></div>'
-        })
-
-        .state('clientes.list', {
-            url: '/list',
-            views: {
-                "": {
-                    templateUrl: 'partials/clientes.html',
-                    controller: 'ClientesListController',
-                },
-            },
-            resolve: {
-                clientes: function (ClientesServices){
-                    return ClientesServices.getClientes()
-                },
-                keyvalues : function (KeyValueServices) {
-                    return KeyValueServices.getKeyValues()
-                }
-            },
-            require: 'js/iic-underscore.js'
-        })
-
-        .state('clientes.record', {
-            url: '/:subId',
-            views: {
-                "": {
-                    templateUrl: 'partials/clientes.record.html',
-                    controller: 'ClientesRecordController',
-                },
-            },
-            resolve: {
-                cliente: function ($stateParams, ClientesServices){
-                    return ClientesServices.getClienteById($stateParams.subId);
-                },
-                keyvalues : function (KeyValueServices) {
-                    return KeyValueServices.getKeyValues()
-                }
-            },
-        })
-
-        .state('pacientes', {
-            abstract: true,
-            url: '/pacientes',
-            template: '<div ui-view class="page-transition"></div>'
-        })
-
-        .state('pacientes.list', {
-            url: '/list',
-            views: {
-                "": {
-                    templateUrl: 'partials/pacientes.html',
-                    controller: 'PacientesListController',
-                },
-            },
-            resolve: {
-                pacientes: function (PacientesServices){
-                    return PacientesServices.getPacientes()
-                }
-            },
-            require: 'js/iic-underscore.js'
-        })
-
-        .state('pacientes.record', {
-            url: '/:subId',
-            views: {
-                "": {
-                    templateUrl: 'partials/pacientes.record.html',
-                    controller: 'PacientesRecordController',
-                },
-            },
-            resolve: {
-                paciente: function ($stateParams, PacientesServices){
-                    return PacientesServices.getPacienteById($stateParams.subId);
-                },
-/*                dispositivos: function (DispositivosServices){
-                    return DispositivosServices.getDispositivos();
-                }*/
-            },
-        })
-
-        .state('keyvalues', {
-            abstract: true,
-            url: '/keyvalues',
-            template: '<div ui-view class="page-transition"></div>'
-        })
-
-        /*.state('usuarios', {
-            abstract: true,
-            url: '/usuarios',
-            template: '<div ui-view class="page-transition"></div>'
-        })
-
-        .state('usuarios.list', {
-            url: '/list',
-            views: {
-                "": {
-                    templateUrl: 'partials/OLDusuariosOLD.html',
-                    controller: 'UsuariosListController',
-                },
-            },
-            resolve: {
-                usuarios: function (UsuariosServices){
-                    return UsuariosServices.getUsuarios();
-                }
-            },
-
-            require: 'js/iic-underscore.js'
-        })*/
 
         .state('dispositivos', {
             abstract: true,
@@ -305,6 +129,23 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
                 "": {
                     templateUrl: 'partials/respaldos.html',
                     controller: 'RespaldosController',
+                },
+            },
+            resolve : {
+                dispositivos: function (DispositivosServices){
+                    return DispositivosServices.getDispositivos();
+                }
+            },
+            require: 'js/iic-underscore.js'
+        })
+
+
+        .state('monitoreo.list', {
+            url: '/list',
+            views: {
+                "": {
+                    templateUrl: 'partials/monitoreo.html',
+                    controller: 'MonitoreoController',
                 },
             },
             resolve : {
@@ -460,32 +301,6 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
             }
         };
     });
-    app.service('KeyValueServices', function ($resource) {
-
-        var resource = $resource('/aut-api/keyvalue', {}, {
-            query: {
-                method: 'GET',
-                headers: [
-                    {'Content-Type': 'application/json'}],
-                isArray: true
-            },
-        });
-
-
-        this.getKeyValues = function getKeyValues() {
-            return resource.query({}).$promise;
-        };
-
-    });
-
-
-    /*respaldos: ['$http', function($http) {
-                    return $http({
-                        method: 'GET',
-                        url: '/js/json/respaldos.json'
-                    })
-                }]*/
-
 
 })(networkautomation);
 
