@@ -1,4 +1,13 @@
+<main-toolbar>
 
+    <md-button ng-click="goBack()" class="md-icon-button">
+        <md-icon aria-label="arrow back" class="material-icons">arrow_back</md-icon>
+        <md-tooltip md-direction="bottom">Go back</md-tooltip>
+    </md-button>
+    <h1 flex style="text-align: center">Respaldos</h1>
+</main-toolbar>
+<md-card>
+    <md-card-content>
 
         <div layout="row" flex>
 
@@ -28,7 +37,7 @@
                     <tr md-row>
                         <th md-column md-order-by="nombre">Nombre</th>
                         <th md-column md-order-by="ip">IP</th>
-                        <th md-column md-order-by="template">Backup</th>
+                        <th md-column md-order-by="Status">Backup</th>
                     </tr>
                     </thead>
                     <tbody md-body>
@@ -41,8 +50,8 @@
                         <td md-cell md-highlight-text="query" md-highlight-flags="i">
                             {{ :: dispositivo.ip}}
                         </td>
-                        <td id="c12">
-                            <md-button href="file:///Users/fservidio/Documents/facultad/seminario/aut-back/{{ :: dispositivo.ip}}.txt" ng-click="" class="md-icon-button">
+                        <td md-cell>
+                            <md-button ng-click="openFile(dispositivo.ip)" class="md-icon-button">
                                 <md-icon aria-label="arrow back" class="material-icons">insert_drive_file</md-icon>
                                 <md-tooltip md-direction="bottom">Backup</md-tooltip>
                             </md-button>

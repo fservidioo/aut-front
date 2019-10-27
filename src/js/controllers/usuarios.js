@@ -63,7 +63,7 @@
         $scope.query = [];
 
         $scope.search = function (row) {
-            var isIt = (angular.lowercase(row.nombre).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
+            var isIt = (angular.lowercase(row.nombreUsuario).indexOf(angular.lowercase($scope.query) || '') !== -1 ||
                 angular.lowercase(row.email).indexOf(angular.lowercase($scope.query) || '') !== -1 );
             return isIt;
         };
@@ -130,7 +130,7 @@
             };
 
             $scope.canSave = function(){
-                if($scope.usuario.nombre && $scope.usuario.password){
+                if($scope.usuario.nombreUsuario && $scope.usuario.password){
                     return false;
                 }
                 return true;

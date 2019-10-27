@@ -1,4 +1,11 @@
+<main-toolbar>
 
+    <md-button ng-click="goBack()" class="md-icon-button">
+        <md-icon aria-label="arrow back" class="material-icons">arrow_back</md-icon>
+        <md-tooltip md-direction="bottom">Go back</md-tooltip>
+    </md-button>
+    <h1 flex style="text-align: center">Monitoreo</h1>
+</main-toolbar>
 
 <div layout="row" flex>
 
@@ -28,18 +35,23 @@
             <tr md-row>
                 <th md-column md-order-by="nombre">Nombre</th>
                 <th md-column md-order-by="ip">IP</th>
-                <th md-column md-order-by="template">Backup</th>
+                <th md-column md-order-by="Status">Status</th>
             </tr>
             </thead>
             <tbody md-body>
             <tr md-row
-                ng-repeat="dispositivo in dispositivos | filter: search | orderBy: query.order">
+                ng-repeat="dispositivo in dispositivos | filter: search | orderBy: query.order"
+            class="animate-list-item clickable">
 
                 <td md-cell md-highlight-text="query" md-highlight-flags="i">
                     {{ :: dispositivo.hostname}}
                 </td>
                 <td md-cell md-highlight-text="query" md-highlight-flags="i">
                     {{ :: dispositivo.ip}}
+                </td>
+                <td md-cell md-highlight-flags="i">
+                    <md-icon aria-label="arrow back" class="material-icons" ng-if="dispositivo.status" style="color: green;">check_circle</md-icon>
+                    <md-icon aria-label="arrow back" class="material-icons" ng-if="!dispositivo.status" style="color: #dd2423;">error</md-icon>
                 </td>
             </tr>
             </tbody>

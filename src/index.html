@@ -44,7 +44,7 @@
                     <span flex style="padding-top: 7px;">Auditoria</span>
                 </md-list-item>
 
-                <md-list-item ng-class="{ 'main-sidenav-item-selected': isInState('monitoreo.list')}" ng-click="goTo('monitoreo.list')"
+                <md-list-item ng-class="{ 'main-sidenav-item-selected': isInState('monitoreo')}" ng-click="goTo('monitoreo')"
                               class="secondary-button-padding">
                     <md-icon aria-label="administrador" class="material-icons">timeline</md-icon>
                     <span flex style="padding-top: 7px;">Monitoreo</span>
@@ -64,7 +64,7 @@
                 </md-list-item>
 
                 <md-list-item ng-class="{ 'main-sidenav-item-selected': isInState('usuarios.list')}" ng-click="goTo('usuarios.list')"
-                              class="secondary-button-padding">
+                              ng-if="userLogged.esAdmin" class="secondary-button-padding">
                     <md-icon aria-label="administrador" class="material-icons">person</md-icon>
                     <span flex style="padding-top: 7px;">Usuarios</span>
                 </md-list-item>
@@ -99,7 +99,6 @@
 
 
     <script src="js/config/app.js"></script>
-    <script src="js/controllers/pacientes.js"></script>
     <script src="js/controllers/monitoreo.js"></script>
     <script src="js/controllers/auditoria.js"></script>
     <script src="js/controllers/respaldos.js"></script>

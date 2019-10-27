@@ -140,7 +140,7 @@ var networkautomation = angular.module('networkautomation', ['ngMaterial', 'ngAn
         })
 
 
-        .state('monitoreo.list', {
+        .state('monitoreo', {
             url: '/list',
             views: {
                 "": {

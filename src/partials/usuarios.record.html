@@ -6,7 +6,7 @@
     </md-button>
     <h1 flex style="text-align: center" >usuario - > {{ (usuarios.nombre) ? usuarios.email : "Nuevo" }}</h1>
 
-    <md-button ng-disabled="!allowedToSave" ng-click="updateRedesprivada()" class="md-raised md-primary">Guardar Cambios</md-button>
+    <md-button ng-disabled="!allowedToSave" ng-click="updateUsuarios()" class="md-raised md-primary">Guardar Cambios</md-button>
 </main-toolbar>
 
 <md-progress-linear ng-if="loading" md-mode="indeterminate"></md-progress-linear>
@@ -28,7 +28,7 @@
 
                     <md-input-container flex>
                         <label>Nombre</label>
-                        <input required="true" ng-model="usuario.nombre" maxlength="100" md-maxlength="100">
+                        <input required="true" ng-model="usuario.nombreUsuario" maxlength="100" md-maxlength="100">
                     </md-input-container>
 
                     <md-input-container flex>
@@ -40,6 +40,14 @@
                         <label>Password</label>
                         <input maxlength="100" md-maxlength="100" ng-model="usuario.password">
                     </md-input-container>
+
+                </div>
+
+                <div layout="row" layout-gt-sm="row" flex-gt-sm>
+
+                    <md-checkbox ng-model="usuario.esAdmin" aria-label="Checkbox 1">
+                        Es Admin ?
+                    </md-checkbox>
 
                 </div>
 

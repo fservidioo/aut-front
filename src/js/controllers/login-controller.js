@@ -15,7 +15,7 @@
 
         $scope.verify = function(){
 
-            var userFound = _.findWhere(usuarios, { nombre: $scope.nombre, password: $scope.password});
+            var userFound = _.findWhere(usuarios, { nombreUsuario: $scope.nombreUsuario, password: $scope.password});
             if(userFound){
                 $rootScope.logged = true;
                 $rootScope.userLogged = userFound;

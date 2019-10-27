@@ -5,7 +5,7 @@
         'use strict';
 
         $scope.showSimpleToast = function(text) {
-
+ç
             $mdToast.show(
                 $mdToast.simple()
                     .textContent(text)
@@ -24,6 +24,12 @@
 
         $scope.goBack = function(){
             //$state.go('home');
+        }
+
+        $scope.openFile = function(ip){
+            var url ="localhost:8081/" + ip + ".txt";
+
+            window.open(url);
         }
 
 
