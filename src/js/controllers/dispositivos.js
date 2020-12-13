@@ -119,7 +119,7 @@
 
     .controller('DispositivosDialog', function ($scope, $mdDialog, dispositivo) {
 
-        $scope.dispositivos = dispositivo;
+        $scope.dispositivo = dispositivo;
 
         $scope.saveDispositivo = function saveDispositivo() {
             $mdDialog.hide($scope.dispositivo);
